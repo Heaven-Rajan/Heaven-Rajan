@@ -2,23 +2,15 @@
 
 <img src="banner.svg" width="700" />
 
-<img src="https://github.com/user-attachments/assets/2e1def20-b344-4aa4-a7bd-58b41c8b88a0" width="380" />
-
 <img src="https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=22&pause=1000&color=BB9AF7&center=true&vCenter=true&width=600&lines=%3E+whoami;Full-Stack+Developer;CS+Student+%40+TH+K%C3%B6ln;Backend+%26+Automation+Builder;Esports+%26+Payments+Tinkerer" alt="Typing SVG" />
 
 <br>
 
-<img src="https://github.com/Heaven-Rajan.png" width="110" style="border-radius:50%;" />
+<img src="https://github.com/user-attachments/assets/2f189837-be12-4055-92a4-5c3b2576a223" width="140" />
 
 </div>
 
 <br>
-
-<div align="center">
-
-<img src="https://github.com/user-attachments/assets/2f189837-be12-4055-92a4-5c3b2576a223" width="120" />
-
-</div>
 
 ```bash
 rajan@dev:~$ cat about.txt
