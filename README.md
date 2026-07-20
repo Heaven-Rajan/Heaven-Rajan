@@ -1,14 +1,20 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:F75C7E,100:6A82FB&height=200&section=header&text=Rajan%20Ahmady&fontSize=55&fontColor=ffffff&animation=fadeIn&desc=Full-Stack%20Developer%20%7C%20CS%20Student&descAlignY=55&descSize=20" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1b27,50:7aa2f7,100:bb9af7&height=180&section=header&text=Rajan%20Ahmady&fontSize=48&fontColor=ffffff&animation=fadeIn" />
 
-<img src="https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=24&pause=1000&color=F75C7E&center=true&vCenter=true&width=600&lines=Full-Stack+Developer;CS+Student+%40+TH+K%C3%B6ln;AI-Assisted+Builder;Esports+%26+Payments+Tinkerer" alt="Typing SVG" />
+<img src="https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=22&pause=1000&color=BB9AF7&center=true&vCenter=true&width=600&lines=%3E+whoami;Full-Stack+Developer;CS+Student+%40+TH+K%C3%B6ln;AI-Assisted+Builder;Esports+%26+Payments+Tinkerer" alt="Typing SVG" />
+
+<br>
+
+<img src="https://github.com/Heaven-Rajan.png" width="110" style="border-radius:50%;" />
 
 </div>
 
 <br>
 
-### 🚀 About Me
+```bash
+rajan@dev:~$ cat about.txt
+```
 
 - 🎓 CS student at TH Köln
 - 💻 Full-stack developer — Next.js, TypeScript, Python, Kotlin
@@ -16,6 +22,17 @@
 - 🎮 Founder of my own Esports organization
 - 💳 Built a self-hosted payment & e-commerce system
 - 🤖 Big into AI-assisted development
+
+<br>
+
+```bash
+rajan@dev:~$ ls ./projects
+```
+
+- 🛒 **B2B Commerce Platform** — product platform for a wholesale business
+- 💳 **SwoooshPay** — self-built payment gateway & e-commerce system
+- 🎮 **Miracle Esports** — Discord bots & infrastructure for my Esports org
+- 🌐 **Client Websites** — freelance web development
 
 <br>
 
@@ -27,24 +44,15 @@
 
 <br>
 
-### 📌 Projects
-
-- 🛒 **B2B Commerce Platform** — product platform for a wholesale business
-- 💳 **SwoooshPay** — self-built payment gateway & e-commerce system
-- 🎮 **Miracle Esports** — Discord bots & infrastructure for my Esports org
-- 🌐 **Client Websites** — freelance web development
-
-<br>
-
-### 📊 GitHub Stats
+### 📊 Stats
 
 <div align="center">
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=Heaven-Rajan&show_icons=true&theme=radical&hide_border=true&count_private=true" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Heaven-Rajan&layout=compact&theme=radical&hide_border=true" />
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=Heaven-Rajan&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" />
+<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Heaven-Rajan&layout=compact&theme=tokyonight&hide_border=true" />
 </div>
 
 <div align="center">
-<img src="https://streak-stats.demolab.com/?user=Heaven-Rajan&theme=radical&hide_border=true" />
+<img src="https://streak-stats.demolab.com/?user=Heaven-Rajan&theme=tokyonight&hide_border=true" />
 </div>
 
 <br>
@@ -65,9 +73,11 @@
 
 <div align="center">
 
-[![Email](https://img.shields.io/badge/Email-rajanahmady04%40gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white)](mailto:rajanahmady04@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-Heaven--Rajan-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Heaven-Rajan)
+[![Email](https://img.shields.io/badge/Email-rajanahmady04%40gmail.com-BB9AF7?style=for-the-badge&logo=gmail&logoColor=white)](mailto:rajanahmady04@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-Heaven--Rajan-7AA2F7?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Heaven-Rajan)
 
 </div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:bb9af7,50:7aa2f7,100:1a1b27&height=100&section=footer" />
 
 </div>
