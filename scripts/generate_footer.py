@@ -1,130 +1,183 @@
 """
-Generates a pixel-art footer scene (footer.svg) for the GitHub profile README:
-sunset sky, a castle silhouette, a rainbow arc, sunflowers and grass.
-Pure stdlib, no dependencies - runs as-is in GitHub Actions.
+Generates an ANIMATED pixel-art platformer-style footer (footer.svg) for the
+GitHub profile README: sky, drifting clouds, hills, bushes, spinning coins,
+a walking pixel hero and a flag at the end. Pure stdlib, no dependencies.
 """
 import math
 
-W, H = 800, 170
-CELL = 8
-COLS, ROWS = W // CELL, H // CELL  # 100 x 21
+W, H = 800, 180
+CELL = 6
 
-# --- palette -----------------------------------------------------------
-SKY_BANDS = ["#2b1055", "#4a1a6c", "#7b2d6e", "#b8416b", "#e8735a", "#f4a95a"]
-RAINBOW = ["#ff004d", "#ff9d2f", "#ffec27", "#00e756", "#29adff", "#8b5cf6"]
-CASTLE = "#1d1533"
-CASTLE_LIGHT = "#2e2350"
-GRASS_A = "#0a3d2e"
-GRASS_B = "#0d4d3a"
-STEM = "#1f8a4c"
-LEAF = "#2fae5f"
-PETAL = "#ffd23f"
-PETAL_DARK = "#ffb703"
-CENTER_SEED = "#7a3b12"
-
-grid = {}  # (col, row) -> color
-
-
-def set_cell(c, r, color):
-    if 0 <= c < COLS and 0 <= r < ROWS:
-        grid[(c, r)] = color
+SKY_TOP = "#5c94fc"
+SKY_BOTTOM = "#a7d8fc"
+HILL_BACK = "#3aa832"
+HILL_FRONT = "#1c8a3c"
+BUSH = "#2fae5f"
+DIRT = "#a0522d"
+DIRT_DARK = "#7a3b1e"
+GRASS_TOP = "#3aa832"
+COIN = "#ffd23f"
+COIN_DARK = "#e0a800"
+HERO_SHIRT = "#2aa9a0"
+HERO_SKIN = "#f2c48b"
+HERO_PANTS = "#3a3a5c"
+FLAG_POLE = "#e5e5e5"
+FLAG_CLOTH = "#ff5a5f"
 
 
-def sky():
-    band_h = ROWS / len(SKY_BANDS)
-    for r in range(ROWS):
-        color = SKY_BANDS[min(int(r / band_h), len(SKY_BANDS) - 1)]
-        for c in range(COLS):
-            set_cell(c, r, color)
+def px_rect(x, y, w, h, color, extra=""):
+    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{color}" {extra}/>'
 
 
-def castle(cx_col, base_row):
-    """Simple blocky castle silhouette, centered at cx_col, sitting on base_row."""
-    towers = [
-        (cx_col - 11, base_row - 7, 4),
-        (cx_col - 4, base_row - 10, 5),
-        (cx_col + 3, base_row - 8, 4),
-        (cx_col + 9, base_row - 6, 3),
+def cloud(x, y, scale=1.0):
+    c = CELL * scale
+    parts = []
+    blocks = [
+        (0, 1, 4, 1), (1, 0, 3, 1),
+        (4, 1, 3, 1), (5, 0, 2, 1),
+        (0, 2, 7, 1),
     ]
-    for tx, ttop, theight in towers:
-        for r in range(ttop, base_row):
-            for dx in range(4):
-                set_cell(tx + dx, r, CASTLE)
-        # crenellations
-        for dx in (0, 2):
-            set_cell(tx + dx, ttop - 1, CASTLE)
-        # little window
-        if theight > 4:
-            set_cell(tx + 1, ttop + 2, CASTLE_LIGHT)
-            set_cell(tx + 2, ttop + 2, CASTLE_LIGHT)
-    # connecting wall
-    for c in range(cx_col - 14, cx_col + 14):
-        set_cell(c, base_row - 3, CASTLE)
-        set_cell(c, base_row - 2, CASTLE)
-    for c in range(cx_col - 14, cx_col + 14, 3):
-        set_cell(c, base_row - 4, CASTLE)
+    for bx, by, bw, bh in blocks:
+        parts.append(px_rect(x + bx * c, y + by * c, bw * c, bh * c, "#ffffff"))
+    return "".join(parts)
 
 
-def rainbow(cx_col, cy_row, r_outer_cells, band_w):
-    cx_px = cx_col * CELL + CELL / 2
-    cy_px = cy_row * CELL + CELL / 2
-    r_outer_px = r_outer_cells * CELL
-    band_px = band_w * CELL
-    r_inner_total = r_outer_px - band_px * len(RAINBOW)
-
-    for c in range(COLS):
-        for r in range(ROWS):
-            px = c * CELL + CELL / 2
-            py = r * CELL + CELL / 2
-            if py > cy_px:
-                continue  # only upper half (the arch)
-            dist = math.hypot(px - cx_px, py - cy_px)
-            if dist > r_outer_px or dist < r_inner_total:
-                continue
-            band_idx = int((r_outer_px - dist) / band_px)
-            band_idx = min(band_idx, len(RAINBOW) - 1)
-            set_cell(c, r, RAINBOW[band_idx])
+def hill(x, base_y, width_cells, height_cells, color):
+    parts = []
+    c = CELL
+    for i in range(height_cells):
+        row_w = width_cells - i * 2
+        if row_w <= 0:
+            break
+        row_x = x + i * c
+        parts.append(px_rect(row_x, base_y - (i + 1) * c, row_w * c, c, color))
+    return "".join(parts)
 
 
-def ground(row_start):
-    for r in range(row_start, ROWS):
-        for c in range(COLS):
-            color = GRASS_A if (c + r) % 2 == 0 else GRASS_B
-            set_cell(c, r, color)
+def bush(x, base_y):
+    c = CELL
+    parts = [
+        px_rect(x, base_y - c, 3 * c, c, BUSH),
+        px_rect(x + c, base_y - 2 * c, c, c, BUSH),
+    ]
+    return "".join(parts)
 
 
-def sunflower(cx_col, base_row, h=6):
-    # stem
-    for r in range(base_row - h, base_row):
-        set_cell(cx_col, r, STEM)
-    # leaves
-    set_cell(cx_col - 1, base_row - 2, LEAF)
-    set_cell(cx_col - 2, base_row - 2, LEAF)
-    set_cell(cx_col + 1, base_row - 3, LEAF)
-    set_cell(cx_col + 2, base_row - 3, LEAF)
-    # flower head (petals in a ring + dark center)
-    hy = base_row - h - 1
-    petal_offsets = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
-    for dx, dy in petal_offsets:
-        color = PETAL if (dx + dy) % 2 == 0 else PETAL_DARK
-        set_cell(cx_col + dx, hy + dy, color)
-    set_cell(cx_col, hy, CENTER_SEED)
+def coin(cx, cy, begin):
+    """A small square coin that does a squash 'spin' loop + gentle bob."""
+    c = CELL
+    return f'''
+    <g transform="translate({cx},{cy})">
+      <animateTransform attributeName="transform" type="translate"
+        additive="sum" values="0,0; 0,-4; 0,0" keyTimes="0;0.5;1"
+        dur="1.1s" begin="{begin}s" repeatCount="indefinite"/>
+      <rect x="{-c}" y="{-c}" width="{2*c}" height="{2*c}" fill="{COIN}">
+        <animateTransform attributeName="transform" type="scale"
+          values="1,1; 0.15,1; 1,1" keyTimes="0;0.5;1"
+          dur="1.1s" begin="{begin}s" repeatCount="indefinite"
+          additive="sum"/>
+      </rect>
+      <rect x="{-c/2}" y="{-c/2}" width="{c}" height="{c}" fill="{COIN_DARK}"/>
+    </g>'''
+
+
+def ground(y_top):
+    parts = []
+    c = CELL
+    cols = W // c
+    for col in range(cols):
+        x = col * c
+        parts.append(px_rect(x, y_top, c, c, GRASS_TOP))
+        for row in range(1, (H - y_top) // c):
+            shade = DIRT if (col + row) % 2 == 0 else DIRT_DARK
+            parts.append(px_rect(x, y_top + row * c, c, c, shade))
+    return "".join(parts)
+
+
+def hero(begin, duration):
+    """A small pixel hero that bobs while walking across the whole width."""
+    c = CELL
+    body = f'''
+    <rect x="{-2*c}" y="{-6*c}" width="{4*c}" height="{2*c}" fill="{HERO_SKIN}"/>
+    <rect x="{-2*c}" y="{-4*c}" width="{4*c}" height="{2*c}" fill="{HERO_SHIRT}"/>
+    <rect x="{-2*c}" y="{-2*c}" width="{4*c}" height="{2*c}" fill="{HERO_PANTS}"/>
+    '''
+    return f'''
+    <g>
+      <animateTransform attributeName="transform" type="translate"
+        values="{-40},0; {W+40},0" keyTimes="0;1"
+        dur="{duration}s" begin="{begin}s" repeatCount="indefinite" calcMode="linear"/>
+      <g>
+        <animateTransform attributeName="transform" type="translate"
+          additive="sum" values="0,0; 0,-3; 0,0; 0,-3; 0,0" keyTimes="0;0.25;0.5;0.75;1"
+          dur="0.5s" begin="0s" repeatCount="indefinite"/>
+        {body}
+      </g>
+    </g>'''
+
+
+def scrolling_layer(content_fn, y, speed, *args):
+    """Draws content twice side by side and loops translateX by -W for a seamless scroll."""
+    g1 = content_fn(0, y, *args)
+    g2 = content_fn(W, y, *args)
+    return f'''
+    <g>
+      <animateTransform attributeName="transform" type="translate"
+        values="0,0; {-W},0" keyTimes="0;1" dur="{speed}s"
+        repeatCount="indefinite" calcMode="linear"/>
+      {g1}{g2}
+    </g>'''
+
+
+def clouds_layer():
+    def draw(xoff, y):
+        return cloud(xoff + 40, y, 1.1) + cloud(xoff + 260, y + 20, 0.8) + cloud(xoff + 520, y + 5, 1.3)
+    return scrolling_layer(draw, 18, 26)
 
 
 def build_svg():
-    sky()
-    castle(cx_col=50, base_row=13)
-    rainbow(cx_col=50, cy_row=19, r_outer_cells=34, band_w=2)
-    ground(row_start=18)
-    for cx in (18, 30, 68, 80):
-        sunflower(cx, base_row=ROWS - 1, h=5 + (cx % 3))
+    ground_y = H - 5 * CELL
 
-    rects = []
-    for (c, r), color in sorted(grid.items(), key=lambda kv: (kv[1], kv[0][1], kv[0][0])):
-        rects.append(f'<rect x="{c*CELL}" y="{r*CELL}" width="{CELL}" height="{CELL}" fill="{color}"/>')
+    sky = f'''<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="{SKY_TOP}"/>
+      <stop offset="100%" stop-color="{SKY_BOTTOM}"/>
+    </linearGradient>'''
+
+    hills_back = hill(20, ground_y, 26, 8, HILL_BACK) + hill(420, ground_y, 30, 9, HILL_BACK) + hill(660, ground_y, 22, 7, HILL_BACK)
+    hills_front = hill(-20, ground_y, 22, 6, HILL_FRONT) + hill(200, ground_y, 26, 7, HILL_FRONT) + hill(560, ground_y, 24, 6, HILL_FRONT) + hill(740, ground_y, 20, 5, HILL_FRONT)
+
+    bushes = bush(90, ground_y) + bush(340, ground_y) + bush(600, ground_y) + bush(720, ground_y)
+
+    coins = "".join(coin(cx, ground_y - 40, i * 0.25) for i, cx in enumerate([160, 320, 480, 640]))
+
+    flag_x, flag_base = 750, ground_y
+    flag = f'''
+    <rect x="{flag_x}" y="{flag_base - 60}" width="4" height="60" fill="{FLAG_POLE}"/>
+    <g transform="translate({flag_x+4},{flag_base-58})">
+      <polygon points="0,0 22,6 0,12" fill="{FLAG_CLOTH}">
+        <animateTransform attributeName="transform" type="skewX"
+          values="0;10;0;-6;0" keyTimes="0;0.3;0.5;0.8;1"
+          dur="1.6s" repeatCount="indefinite"/>
+      </polygon>
+    </g>'''
+
+    sun = f'''
+    <circle cx="740" cy="34" r="18" fill="#ffe066">
+      <animate attributeName="r" values="18;20;18" dur="2.4s" repeatCount="indefinite"/>
+    </circle>'''
 
     return f'''<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-{"".join(rects)}
+  <defs>{sky}</defs>
+  <rect width="{W}" height="{H}" fill="url(#sky)"/>
+  {sun}
+  {clouds_layer()}
+  {hills_back}
+  {hills_front}
+  {bushes}
+  {ground(ground_y)}
+  {coins}
+  {flag}
+  {hero(0, 9)}
 </svg>'''
 
 
