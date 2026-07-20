@@ -95,6 +95,6 @@ rajan@dev:~$ ls ./projects
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:bb9af7,50:7aa2f7,100:1a1b27&height=100&section=footer" />
+<img src="footer.svg" width="800" />
 
 </div>
