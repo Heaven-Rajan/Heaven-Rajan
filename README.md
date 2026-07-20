@@ -4,7 +4,7 @@
 
 <!-- 👇 füg hier dein sakura-gif ein (schön mittig, ca. 400px breit) -->
 
-<img src="https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=22&pause=1000&color=BB9AF7&center=true&vCenter=true&width=600&lines=%3E+whoami;Full-Stack+Developer;CS+Student+%40+TH+K%C3%B6ln;AI-Assisted+Builder;Esports+%26+Payments+Tinkerer" alt="Typing SVG" />
+<img src="https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=22&pause=1000&color=BB9AF7&center=true&vCenter=true&width=600&lines=%3E+whoami;Full-Stack+Developer;CS+Student+%40+TH+K%C3%B6ln;Backend+%26+Automation+Builder;Esports+%26+Payments+Tinkerer" alt="Typing SVG" />
 
 <br>
 
