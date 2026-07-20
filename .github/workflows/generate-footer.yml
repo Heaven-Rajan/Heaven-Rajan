@@ -1,0 +1,30 @@
+name: Generate Footer
+
+on:
+  push:
+    paths:
+      - "scripts/generate_footer.py"   # re-run whenever the script changes
+  workflow_dispatch: {}                 # lets you trigger it manually too
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Generate footer.svg
+        run: python scripts/generate_footer.py
+
+      - name: Commit & Push
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add footer.svg
+          if git commit -m "generate footer"; then git push; fi
