@@ -78,14 +78,6 @@ rajan@dev:~$ ls ./projects
 
 <br>
 
-### 🧊 3D Contribution Calendar
-
-<div align="center">
-<img alt="3d contribution calendar" src="./profile-3d-contrib/profile-night-rainbow.svg" />
-</div>
-
-<br>
-
 ### 📈 Metrics Dashboard
 
 <div align="center">
