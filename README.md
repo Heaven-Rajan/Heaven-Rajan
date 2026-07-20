@@ -2,7 +2,7 @@
 
 <img src="banner.svg" width="700" />
 
-<!-- 👇 füg hier dein sakura-gif ein (schön mittig, ca. 400px breit) -->
+<img src="sakura.gif" width="380" />
 
 <img src="https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=22&pause=1000&color=BB9AF7&center=true&vCenter=true&width=600&lines=%3E+whoami;Full-Stack+Developer;CS+Student+%40+TH+K%C3%B6ln;Backend+%26+Automation+Builder;Esports+%26+Payments+Tinkerer" alt="Typing SVG" />
 
@@ -16,7 +16,7 @@
 
 <div align="center">
 
-<!-- 👇 füg hier dein pixel-laptop-gif ein (klein, ca. 120px) -->
+<img src="pixel-laptop.gif" width="120" />
 
 </div>
 
@@ -48,7 +48,7 @@ rajan@dev:~$ ls ./projects
 - 🏠 **Homelab** — self-hosted infrastructure project: virtualization, networking, and service hosting from the ground up
 
 <div align="center">
-<!-- 👇 füg hier dein hochgeladenes projects-Bild ein -->
+<img src="projects.jpg" width="500" />
 </div>
 
 <br>
