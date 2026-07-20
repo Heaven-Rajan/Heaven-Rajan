@@ -10,6 +10,10 @@
 
 </div>
 
+<div align="center">
+<!-- 👇 füg hier dein sakura-gif ein -->
+</div>
+
 <br>
 
 ```bash
@@ -34,9 +38,17 @@ rajan@dev:~$ ls ./projects
 - 🎮 **Miracle Esports** — Discord bots & infrastructure for my Esports org
 - 🌐 **Client Websites** — freelance web development
 
+<div align="center">
+<!-- 👇 füg hier dein hochgeladenes projects-Bild ein -->
+</div>
+
 <br>
 
 ### 🛠️ Tech Stack
+
+<div align="center">
+<!-- 👇 füg hier dein pixel-laptop-gif ein -->
+</div>
 
 <div align="center">
 <img src="https://skillicons.dev/icons?i=ts,js,react,nextjs,nodejs,python,kotlin,java,c,cpp,cs,postgres,docker,git,html,css,tailwind&theme=dark" />
@@ -73,7 +85,7 @@ rajan@dev:~$ ls ./projects
 
 <div align="center">
 
-[![Email](https://img.shields.io/badge/Email-rajanahmady04%40gmail.com-BB9AF7?style=for-the-badge&logo=gmail&logoColor=white)](mailto:rajanahmady04@gmail.com)
+[![Email](https://img.shields.io/badge/Email-letscontactheaven%40gmail.com-BB9AF7?style=for-the-badge&logo=gmail&logoColor=white)](mailto:letscontactheaven@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-Heaven--Rajan-7AA2F7?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Heaven-Rajan)
 
 </div>
