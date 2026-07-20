@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="name-banner.svg" width="700" />
+<img src="banner.svg" width="700" />
 
 <!-- 👇 füg hier dein sakura-gif ein (schön mittig, ca. 400px breit) -->
 
